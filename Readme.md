@@ -3,27 +3,82 @@
 [![](https://img.shields.io/badge/Open_in_DevExpress_Support_Center-FF7200?style=flat-square&logo=DevExpress&logoColor=white)](https://supportcenter.devexpress.com/ticket/details/E4477)
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
-<!-- default file list -->
-*Files to look at*:
 
-* [HomeController.cs](./CS/Controllers/HomeController.cs) (VB: [HomeController.vb](./VB/Controllers/HomeController.vb))
-* **[All.cshtml](./CS/Views/Home/All.cshtml)**
-* [DX.cshtml](./CS/Views/Home/DX.cshtml)
-* [Index.cshtml](./CS/Views/Home/Index.cshtml)
-* [Plain.cshtml](./CS/Views/Home/Plain.cshtml)
-* [SeparatePartialView.cshtml](./CS/Views/Home/SeparatePartialView.cshtml)
-<!-- default file list end -->
 # How to define RoundPanel content
 <!-- run online -->
 **[[Run Online]](https://codecentral.devexpress.com/e4477/)**
 <!-- run online end -->
 
+A `SetContent` method allows you to define a content of DevExpress MVC extensions. This example demonstrates how to use this method overloads to define [RoundPanel](https://docs.devexpress.com/AspNetMvc/8976/components/multi-use-site-extensions/round-panel) content in the following ways:
 
-<p>This example is an illustration of the <a href="https://www.devexpress.com/Support/Center/p/KA18923">KA18923: The SetContent method - How to define a content using different syntax constructions</a> KB Article. Refer to the Article for an explanation.</p><p>This example illustrates how to define RoundPanel content:<br />
-- Via the ViewContext.Writer.Write method by passing HTML content as a string;<br />
-- With the use of DevExpress MVC Extensions;<br />
-- Via different syntax constructions (raw HTML tags, the built-in HtmlHelper methods, the DevExpress MVC Extensions).</p>
+* Call the [SetContent(String content)](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RoundPanelSettings.SetContent(System.String)) method overload to specify a content as a string. This overload is intended for simple scenarios where it is necessary to render simple HTML content (specified directly as a parameter).
+  ```
+  settings.SetContent(@"<table border=\"1\"><tr><td>RoundPanel Content Here</td></tr></table>");
+  ```
+* Call the [SetContent(Action contentMethod)](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RoundPanelSettings.SetContent(System.Action)) method overload to add a DevExpress MVC Extension in the panel content.
+  ```
+  settings.SetContent(() => {
+      Html.DevExpress().Label(lbl => {
+          lbl.Name = "lbl";
+          lbl.Text = "DevExpress Label - Some Text";
+      }).Render();
+  });
+  ```
+* Call the [ViewContext.Writer.Write](https://learn.microsoft.com/en-us/dotnet/api/system.io.textwriter.write) method to combine different syntax constructions (raw HTML tags, action methods, the built-in HtmlHelper methods, the DevExpress MVC Extensions) to a text stream and pass it to the [SetContent(String content)](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RoundPanelSettings.SetContent(System.String)) method overload.
+  ```
+  settings.SetContent(() => {
+      //Raw HTML
+      ViewContext.Writer.Write("<table border=\"1\"><tr><td>Content From Raw <b>HTML</b> Table Here...</td></tr></table>");
+      ViewContext.Writer.Write("<br/>");
+  
+      //Action Method
+      Html.RenderAction("SeparateAction");
+      ViewContext.Writer.Write("<br/>");
+      ViewContext.Writer.Write("<br/>");
+  
+      //Partial View with Html.BeginForm
+      Html.RenderPartial("SeparatePartialView");
+      ViewContext.Writer.Write("<br/>");
+      ViewContext.Writer.Write("<br/>");
+  
+      //Html Helper
+      ViewContext.Writer.Write(Html.TextBox("txtName").ToHtmlString());
+      ViewContext.Writer.Write("<br/>");
+      ViewContext.Writer.Write("<br/>");
+      
+      //Conditional
+      ViewContext.Writer.Write("Content From Conditional Rendering Block:");
+      ViewContext.Writer.Write("<br/>");
+      bool condition = DateTime.Now.Year == 2014;
+      if(condition) {
+          ViewContext.Writer.Write("<b>Condition Passed</b>");
+      } else {
+          ViewContext.Writer.Write("<b>Condition Failed</b>");
+      }
+      ViewContext.Writer.Write("<br/>");
+      ViewContext.Writer.Write("<br/>");
+      
+      //DevExpress MVC Extensions
+      Html.DevExpress().Label(lbl => {
+          lbl.Name = "lbl";
+          lbl.Text = "Content From DevExpress Label Here...";
+      }).Render();
+  });
+  ```
 
-<br/>
+You can use these approaches for all DevExpress MVC Extensions that suppors the `SetContent` or `SetNestedContent` method. Additionally, you can define templates for structural elements using `Set{ElementName}TemplateContent` methods.
 
+It is also possible to handle `Set{ElementName}TemplateContent` methods to define template content in the same way. 
 
+## Files to Review
+
+* [Plain.cshtml](./CS/Views/Home/Plain.cshtml)
+* [DX.cshtml](./CS/Views/Home/DX.cshtml)
+* [All.cshtml](./CS/Views/Home/All.cshtml)
+* [Index.cshtml](./CS/Views/Home/Index.cshtml)
+* [SeparatePartialView.cshtml](./CS/Views/Home/SeparatePartialView.cshtml)
+* [HomeController.cs](./CS/Controllers/HomeController.cs) (VB: [HomeController.vb](./VB/Controllers/HomeController.vb))
+  
+## Documentation
+
+* [Templates](https://docs.devexpress.com/AspNetMvc/14721/common-features/templates)
