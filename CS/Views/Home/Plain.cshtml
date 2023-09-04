@@ -1,7 +1,6 @@
 @Html.DevExpress().RoundPanel(settings => {
     settings.Name = "rp";
-    settings.SetContent(() => {
-        ViewContext.Writer.Write("<table border=\"1\"><tr><td>RoundPanel Content Here</td></tr></table>");
+    settings.SetContent(@"<table border=\"1\"><tr><td>RoundPanel Content Here</td></tr></table>");
     });
 }).GetHtml()
 <br />
