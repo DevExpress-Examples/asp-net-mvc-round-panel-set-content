@@ -66,7 +66,7 @@ A `SetContent` method allows you to define a content of DevExpress MVC extension
   });
   ```
 
-You can use these approaches for all DevExpress MVC Extensions that suppors the `SetContent` or `SetNestedContent` method. Additionally, you can define templates for structural elements using `Set{ElementName}TemplateContent` methods.
+You can use these approaches for all DevExpress MVC Extensions that suppors the `SetContent` or `SetNestedContent` method.
 
 It is also possible to handle `Set{ElementName}TemplateContent` methods to define template content in the same way. 
 
