@@ -1,0 +1,11 @@
+@Html.DevExpress().RoundPanel(settings => {
+    settings.Name = "rp";
+    settings.SetContent(() => {
+        Html.DevExpress().Label(lbl => {
+            lbl.Name = "lbl";
+            lbl.Text = "DevExpress Label - Some Text";
+        }).Render();
+    });
+}).GetHtml()
+<br />
+@Html.ActionLink("<< Home", "Index")

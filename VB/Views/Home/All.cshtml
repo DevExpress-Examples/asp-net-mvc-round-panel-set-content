@@ -1,0 +1,43 @@
+@Html.DevExpress().RoundPanel(settings => {
+    settings.Name = "rp";
+    settings.SetContent(() => {
+        //Raw HTML
+        ViewContext.Writer.Write("<table border=\"1\"><tr><td>Content From Raw <b>HTML</b> Table Here...</td></tr></table>");
+        ViewContext.Writer.Write("<br/>");
+
+        //Action Method
+        Html.RenderAction("SeparateAction");
+        ViewContext.Writer.Write("<br/>");
+        ViewContext.Writer.Write("<br/>");
+
+        //Partial View with Html.BeginForm
+        Html.RenderPartial("SeparatePartialView");
+        ViewContext.Writer.Write("<br/>");
+        ViewContext.Writer.Write("<br/>");
+
+        //Html Helper
+        ViewContext.Writer.Write(Html.TextBox("txtName").ToHtmlString());
+        ViewContext.Writer.Write("<br/>");
+        ViewContext.Writer.Write("<br/>");
+        
+        //Conditional
+        ViewContext.Writer.Write("Content From Conditional Rendering Block:");
+        ViewContext.Writer.Write("<br/>");
+        bool condition = DateTime.Now.Year == 2014;
+        if(condition) {
+            ViewContext.Writer.Write("<b>Condition Passed</b>");
+        } else {
+            ViewContext.Writer.Write("<b>Condition Failed</b>");
+        }
+        ViewContext.Writer.Write("<br/>");
+        ViewContext.Writer.Write("<br/>");
+        
+        //DevExpress MVC Extensions
+        Html.DevExpress().Label(lbl => {
+            lbl.Name = "lbl";
+            lbl.Text = "Content From DevExpress Label Here...";
+        }).Render();
+    });
+}).GetHtml()
+<br />
+@Html.ActionLink("<< Home", "Index")

@@ -1,0 +1,6 @@
+@Html.DevExpress().RoundPanel(settings => {
+    settings.Name = "rp";
+    settings.SetContent(@"<table border=\"1\"><tr><td>RoundPanel Content Here</td></tr></table>");
+}).GetHtml()
+<br />
+@Html.ActionLink("<< Home", "Index")
