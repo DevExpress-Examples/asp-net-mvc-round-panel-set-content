@@ -3,12 +3,12 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
 
-# How to define RoundPanel content
+# Round Panel for ASP.NET Web Forms - How to define control content
 <!-- run online -->
 **[[Run Online]](https://codecentral.devexpress.com/e4477/)**
 <!-- run online end -->
 
-A `SetContent` method allows you to define a content of DevExpress MVC extensions. This example demonstrates how to use this method overloads to define [RoundPanel](https://docs.devexpress.com/AspNetMvc/8976/components/multi-use-site-extensions/round-panel) content in the following ways:
+The `SetContent` method allows you to define a content of DevExpress MVC extensions. This example demonstrates how to use this method overloads to define [RoundPanel](https://docs.devexpress.com/AspNetMvc/8976/components/multi-use-site-extensions/round-panel) content in the following ways:
 
 * Call the [SetContent(String content)](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RoundPanelSettings.SetContent(System.String)) method overload to specify a content as a string. This overload is intended for simple scenarios where it is necessary to render simple HTML content (specified directly as a parameter).
   ```
@@ -23,7 +23,7 @@ A `SetContent` method allows you to define a content of DevExpress MVC extension
       }).Render();
   });
   ```
-* Call the [ViewContext.Writer.Write](https://learn.microsoft.com/en-us/dotnet/api/system.io.textwriter.write) method to combine different syntax constructions (raw HTML tags, action methods, the built-in HtmlHelper methods, the DevExpress MVC Extensions) to a text stream and pass it to the [SetContent(String content)](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RoundPanelSettings.SetContent(System.String)) method overload.
+* Call the [ViewContext.Writer.Write](https://learn.microsoft.com/en-us/dotnet/api/system.io.textwriter.write) method to combine different syntax constructions (raw HTML tags, action methods, built-in HtmlHelper methods, DevExpress MVC Extensions) to a text stream and pass it to the [SetContent(String content)](https://docs.devexpress.com/AspNetMvc/DevExpress.Web.Mvc.RoundPanelSettings.SetContent(System.String)) method overload.
   ```
   settings.SetContent(() => {
       //Raw HTML
@@ -65,7 +65,7 @@ A `SetContent` method allows you to define a content of DevExpress MVC extension
   });
   ```
 
-You can use these approaches for all DevExpress MVC Extensions that suppors the `SetContent` or `SetNestedContent` method.
+You can use these approaches for every DevExpress MVC Extension that suppors the `SetContent` or `SetNestedContent` method.
 
 It is also possible to handle `Set{ElementName}TemplateContent` methods to define template content in the same way. 
 
