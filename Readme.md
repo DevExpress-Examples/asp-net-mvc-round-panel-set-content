@@ -3,7 +3,7 @@
 [![](https://img.shields.io/badge/📖_How_to_use_DevExpress_Examples-e9f6fc?style=flat-square)](https://docs.devexpress.com/GeneralInformation/403183)
 <!-- default badges end -->
 
-# Round Panel for ASP.NET Web Forms - How to define control content
+# Round Panel for ASP.NET MVC - How to define control content
 <!-- run online -->
 **[[Run Online]](https://codecentral.devexpress.com/e4477/)**
 <!-- run online end -->
