@@ -5,9 +5,6 @@
 <!-- default badges end -->
 
 # Round Panel for ASP.NET MVC - How to define control content
-<!-- run online -->
-**[[Run Online]](https://codecentral.devexpress.com/128552509/)**
-<!-- run online end -->
 
 The `SetContent` method allows you to define the content of DevExpress MVC extensions. This example demonstrates how to use these method overloads to define [RoundPanel](https://docs.devexpress.com/AspNetMvc/8976/components/multi-use-site-extensions/round-panel) content in the following ways:
 
